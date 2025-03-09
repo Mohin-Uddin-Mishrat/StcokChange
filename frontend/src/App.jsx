@@ -93,8 +93,8 @@ const App = () => {
           </LineChart>
         </div>
       </div>
-      <div className=" mt-8">
-        <table className="w-full border-collapse border border-gray-300">
+      <div className="mt-8 overflow-x-auto">
+        <table className="w-full table-fixed border border-gray-300 min-w-[1000px]">
           <thead>
             <tr className="bg-gray-200">
               <th className="border border-gray-300 p-2">Date</th>
