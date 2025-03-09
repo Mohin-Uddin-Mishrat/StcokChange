@@ -23,7 +23,7 @@ const App = () => {
     setData(updatedData);
     axios
       .put(
-        `http://127.0.0.1:8000/stocks/${id}/`,
+        `https://stcokchange.onrender.com/stocks/${id}/`,
         updatedData.find((item) => item.id === id)
       )
       .catch((error) => console.error(error));
@@ -31,7 +31,7 @@ const App = () => {
 
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:8000/stocks/")
+      .get("https://stcokchange.onrender.com/stocks/")
       .then((response) => {
         setData(response.data);
         console.log(response.data);
@@ -92,95 +92,103 @@ const App = () => {
             <Bar yAxisId="right" dataKey="volume" fill="#82ca9d" />
           </LineChart>
         </div>
-        <div className="mt-6">
-          <table className="w-full border-collapse border border-gray-300">
-            <thead>
-              <tr className="bg-gray-200">
-                <th className="border border-gray-300 p-2">Date</th>
-                <th className="border border-gray-300 p-2">Trade Code</th>
-                <th className="border border-gray-300 p-2">High</th>
-                <th className="border border-gray-300 p-2">Low</th>
-                <th className="border border-gray-300 p-2">Open</th>
-                <th className="border border-gray-300 p-2">Close</th>
-                <th className="border border-gray-300 p-2">Volume</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredData.map((item) => (
-                <tr
-                  key={item.id}
-                  className="text-center border-b border-gray-200 hover:bg-gray-100"
+      </div>
+      <div className=" mt-8">
+        <table className="w-full border-collapse border border-gray-300">
+          <thead>
+            <tr className="bg-gray-200">
+              <th className="border border-gray-300 p-2">Date</th>
+              <th className="border border-gray-300 p-2">Trade Code</th>
+              <th className="border border-gray-300 p-2">High</th>
+              <th className="border border-gray-300 p-2">Low</th>
+              <th className="border border-gray-300 p-2">Open</th>
+              <th className="border border-gray-300 p-2">Close</th>
+              <th className="border border-gray-300 p-2">Volume</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredData.map((item) => (
+              <tr
+                key={item.id}
+                className="text-center border-b border-gray-200 hover:bg-gray-100"
+              >
+                <td className="border border-gray-300 p-2" data-label="Date">
+                  <input
+                    type="text"
+                    value={item.date}
+                    onChange={(e) =>
+                      handleUpdate(item.id, "date", e.target.value)
+                    }
+                    className="w-full"
+                  />
+                </td>
+                <td
+                  className="border border-gray-300 p-2"
+                  data-label="Trade Code"
                 >
-                  <td className="border border-gray-300 p-2">
-                    <input
-                      type="text"
-                      value={item.date}
-                      onChange={(e) =>
-                        handleUpdate(item.id, "date", e.target.value)
-                      }
-                    />
-                  </td>
-                  <td className="border border-gray-300 p-2">
-                    <input
-                      type="text"
-                      value={item.trade_code}
-                      onChange={(e) =>
-                        handleUpdate(item.id, "trade_code", e.target.value)
-                      }
-                    />
-                  </td>
-                  <td className="border border-gray-300 p-2">
-                    <input
-                      type="text"
-                      value={item.high}
-                      onChange={(e) =>
-                        handleUpdate(item.id, "high", e.target.value)
-                      }
-                    />
-                  </td>
-                  <td className="border border-gray-300 p-2">
-
-                    <input
-                      type="text"
-                      value={item.low}
-                      onChange={(e) =>
-                        handleUpdate(item.id, "low", e.target.value)
-                      }
-                    />
-                  </td>
-                  <td className="border border-gray-300 p-2">
-               
-                    <input
-                      type="text"
-                      value={item.open}
-                      onChange={(e) =>
-                        handleUpdate(item.id, "open", e.target.value)
-                      }
-                    />
-                  </td>
-                  <td className="border border-gray-300 p-2">
-                    <input
-                      type="text"
-                      value= {item.close}
-                      onChange={(e) =>
-                        handleUpdate(item.id, "close", e.target.value)
-                      }
-                    />
-                  </td>
-                  <td className="border border-gray-300 p-2">
-                    <input
-                      type="text"
-                      value={item.volume}
-                      onChange={(e) =>
-                        handleUpdate(item.id, "volume", e.target.value)
-                      }
-                    />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+                  <input
+                    type="text"
+                    value={item.trade_code}
+                    onChange={(e) =>
+                      handleUpdate(item.id, "trade_code", e.target.value)
+                    }
+                    className="w-full"
+                  />
+                </td>
+                <td className="border border-gray-300 p-2" data-label="High">
+                  <input
+                    type="text"
+                    value={item.high}
+                    onChange={(e) =>
+                      handleUpdate(item.id, "high", e.target.value)
+                    }
+                    className="w-full"
+                  />
+                </td>
+                <td className="border border-gray-300 p-2" data-label="Low">
+                  <input
+                    type="text"
+                    value={item.low}
+                    onChange={(e) =>
+                      handleUpdate(item.id, "low", e.target.value)
+                    }
+                    className="w-full"
+                  />
+                </td>
+                <td className="border border-gray-300 p-2" data-label="Open">
+                  <input
+                    type="text"
+                    value={item.open}
+                    onChange={(e) =>
+                      handleUpdate(item.id, "open", e.target.value)
+                    }
+                    className="w-full"
+                  />
+                </td>
+                <td className="border border-gray-300 p-2" data-label="Close">
+                  <input
+                    type="text"
+                    value={item.close}
+                    onChange={(e) =>
+                      handleUpdate(item.id, "close", e.target.value)
+                    }
+                    className="w-full"
+                  />
+                </td>
+                <td className="border border-gray-300 p-2" data-label="Volume">
+                  <input
+                    type="text"
+                    value={item.volume}
+                    onChange={(e) =>
+                      handleUpdate(item.id, "volume", e.target.value)
+                    }
+                    className="w-full"
+                  />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
