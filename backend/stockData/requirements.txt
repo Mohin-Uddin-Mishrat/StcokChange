@@ -1,0 +1,9 @@
+asgiref
+Django
+django-cors-headers
+djangorestframework
+gunicorn
+packaging
+sqlparse
+tzdata
+whitenoise
